@@ -39,3 +39,13 @@ block contenido
                     |   #{resultado.disponibles} Disponibles
 
                 p=resultado.descripcion
+        hr(style='border:solid 1px black;')
+
+        .row
+            // Nuestra modificacion va a ser meter un mapa que muestre la ubicacion del sitio que hemos seleccionado
+            .col-md-12.text-center
+                h1.text-center.m-5 Mapa De #{resultado.titulo}
+                //El enlace del mapa tiene que tener esta estructura
+                //https://www.google.com/maps?q=${latitud},${longitud}&output=embed
+                .col-md-12.d-flex.justify-content-center
+                iframe(src=`https://www.google.com/maps?q=${resultado.latitud},${resultado.longitud}&output=embed` width='600' height='450' style='border:0;' allowfullscreen='' loading='lazy')

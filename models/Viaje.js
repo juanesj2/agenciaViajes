@@ -26,6 +26,14 @@ export const Viaje = db.define('viaje', {
 
     slug: {
         type: Sequelize.STRING
+    },
+
+    latitud: {
+        type: Sequelize.FLOAT
+    },
+
+    longitud: {
+        type: Sequelize.FLOAT
     }
 });
 
