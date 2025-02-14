@@ -9,8 +9,8 @@ Este proyecto es una aplicación web que permite a los usuarios explorar destino
 ## 🎯 Características  
 
 ✅ **Pagina Inicio** donde veras la pagina principal.  
-✅ **Pagina Nosotros** donde veras informacion sobre quienes somos.
-✅ **Pagina Testimonios** Para que veas las reseñas de otros usuarios.
+✅ **Pagina Nosotros** donde veras informacion sobre quienes somos.  
+✅ **Pagina Testimonios** Para que veas las reseñas de otros usuarios.  
 ✅ **Mapa con el destino** Para ver donde te vas de viaje.  
 ✅ **Diseño responsivo** para una experiencia fluida en cualquier dispositivo.  
 
