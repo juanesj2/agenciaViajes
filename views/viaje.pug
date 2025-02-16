@@ -48,4 +48,28 @@ block contenido
                 //El enlace del mapa tiene que tener esta estructura
                 //https://www.google.com/maps?q=${latitud},${longitud}&output=embed
                 .col-md-12.d-flex.justify-content-center
-                iframe(src=`https://www.google.com/maps?q=${resultado.latitud},${resultado.longitud}&output=embed` width='600' height='450' style='border:0;' allowfullscreen='' loading='lazy')
+                iframe(src=`https://www.google.com/maps?q=${resultado.latitud},${resultado.longitud}&output=embed` width='100%' height='500' style='border:0;' allowfullscreen='' loading='lazy')
+
+                //iframe(width='600' height='450' style='border:0' loading='lazy' allowfullscreen='' referrerpolicy='no-referrer-when-downgrade' src='https://www.google.com/maps/embed/v1/place?key=TU_CLAVE_AQUI\
+                //&q=Space+Needle,Seattle+WA')
+
+                div#map
+
+                script.
+                    // Ponemos como posicion inicial españa por ejemplo
+                    var map = L.map('map').setView([40.4168, -3.7038], 5);
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; OpenStreetMap contributors'
+                    }).addTo(map);
+
+                    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=#{encodeURIComponent(resultado.titulo)}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.length === 0) return;
+
+                            var lat = data[0].lat, lon = data[0].lon;
+                            map.setView([lat, lon], 10);
+                            L.marker([lat, lon]).addTo(map).bindPopup("#{resultado.titulo}").openPopup();
+                        })
+                        .catch(console.error);
