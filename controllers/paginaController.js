@@ -1,5 +1,6 @@
 import {Viaje} from '../models/Viaje.js';
 import {Testimonial} from '../models/testimoniales.js';
+import {Mapa} from "../models/Mapa.js";
 
 import moment from 'moment';
 import {Model as Testimonio} from "sequelize";
@@ -111,6 +112,30 @@ const guardarTestimonios = async (req, res) => {
     }
 }
 
+const guardarMapa  = async (req, res) => {
+    const { titulo, latitud, longitud } = req.body;
+
+    try {
+        // Comprobar si el título ya existe en la base de datos
+        const mapaExistente = await Mapa.findOne({ where: { titulo } });
+
+        if (mapaExistente) {
+            // Si el título ya existe, responder con un mensaje adecuado
+            return res.json({ ok: false, mensaje: 'Ya existe un mapa con ese título' });
+        }
+
+        // Si no existe, crear el nuevo mapa
+        await Mapa.create({ titulo, latitud, longitud });
+
+        res.json({ ok: true, mensaje: 'Datos guardados correctamente' });
+    } catch (error) {
+        console.error('Error al guardar en la base de datos:', error);
+        res.json({ ok: false, mensaje: 'Hubo un problema al guardar los datos', error: error.message });
+    }
+}
+
+
+
 
 export {
     paginaInicio,
@@ -119,4 +144,5 @@ export {
     paginaTestimonios,
     paginaDetallesViajes,
     guardarTestimonios,
+    guardarMapa
 };
