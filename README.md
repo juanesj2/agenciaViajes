@@ -4,8 +4,6 @@
 
 ## 📌 Descripción  
 
-Enlace del sitio: https://agencia-de-viajes-jfb1.onrender.com.  
-
 Este proyecto es una aplicación web que permite a los usuarios explorar destinos turísticos.  
 
 ## 🎯 Características  
